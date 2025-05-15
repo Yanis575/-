@@ -1,0 +1,41 @@
+{% load static %}
+
+<header>
+   {% with request.resolver_match.view_name as view_name %}
+      <nav class="navbar navbar-light" style="background-color: lightskyblue">
+        <div class="container ">
+          <a class="navbar-brand" href="{% url 'questions:index' %}">
+            <img src="{% static 'img/fav/logo-32x32.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+            Термодинамика. Подготовка к ЕГЭ.
+          </a>
+          <ul class="nav  nav-pills">
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'questions:index' %} active {% endif %}" href="{% url 'questions:index' %}">
+                Главная
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'questions:create' %} active {% endif %}" href="{% url 'questions:create' %}">
+                Добавить задание
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'questions:seek' %} active {% endif %}" href="{% url 'questions:seek' %}">
+                Поиск задания
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'pages:info' %} active {% endif %}" href="{% url 'pages:info' %}">
+                Информация о сайте
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if view_name == 'theory:index' %} active {% endif %}" href="{% url 'theory:index' %}">
+                Теоретический материал
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  {% endwith %}
+</header>

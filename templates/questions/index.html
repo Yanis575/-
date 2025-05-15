@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}
+Задачи
+{% endblock %}
+{% block content %}
+  <h1>Вопросы</h1>
+  {% for quest in page_obj %}
+  <hr>
+  <article>
+      {% if quest.picture %}
+        <img src="{{quest.picture.url}}" alt="" width="400" height="150" >
+      {% endif %}
+
+      <h3>{{ quest.category.name }}</h3>
+
+    <ul>
+      <li>
+        <b>Вопрос:</b> {{ quest.questions }}
+      </li>
+      <li>
+        <b>Ответ:</b>
+        <form action="{% url 'questions:detail' quest.id %}">
+          <input type="text" name="answer" required autocomplete="off">
+          <input type="submit" value="Ответить">
+        </form>
+      </li>
+
+
+    </ul>
+<!--    <p>-->
+<!--      {{ quest.describe|truncatewords:5 }}-->
+<!--    </p>-->
+<!--    <a href="{% url 'questions:detail' quest.id %}">-->
+<!--      Проверить решение-->
+<!--    </a>-->
+    {% endfor %}
+  </article>
+{% include 'includes/paginator.html' %}
+{% endblock %}
